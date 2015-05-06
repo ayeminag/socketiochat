@@ -1,0 +1,56 @@
+<html>
+<head>
+  <title>My Little Chat!</title>
+  <style type="text/css">
+  ul#chatmessages{
+    height: 50%;
+    background-
+    list-style: none;
+  }
+  </style>
+  <script type="text/javascript" src="/public/socket.io.js"></script>
+</head>
+<body>
+<ul id="chatmessages">
+</ul>
+<input type="text" id="message" placeholder="Message"/>&nbsp;&nbsp;<button id="send">Send</button>
+<script type="text/javascript">
+var socket = io.connect("http://localhost:4000");
+socket.on("connected", function(data){
+  MessagesList.append(data);
+});
+
+socket.on("user message", function(data){
+  MessagesList.append(data.message);
+});
+
+var sendbutton = document.getElementById("send");
+var message = document.getElementById("message");
+
+sendbutton.addEventListener("click", function(e){
+  messagetext = message.value;
+  if(messagetext !== ""){
+    socket.emit("chat message", {message: messagetext});
+    MessagesList.append(messagetext);
+    message.value = "";
+  }
+});
+var MessagesList = {
+  messages: document.getElementById("chatmessages"),
+  append: function(message){
+    this.appendMessages(this.getMessage(message));
+  },
+
+  appendMessages: function(message){
+    this.messages.appendChild(message);
+  },
+
+  getMessage: function(message){
+    var li = document.createElement("li");
+    li.innerHTML = message
+    return li;
+  }
+}
+</script>
+</body>
+</html>

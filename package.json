@@ -1,0 +1,15 @@
+{
+  "name": "socketiotest",
+  "version": "1.0.0",
+  "description": "just a test for socket.io",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Aye Min Aung",
+  "license": "GPL",
+  "dependencies": {
+    "express": "^4.12.3",
+    "socket.io": "^0.8.7"
+  }
+}
