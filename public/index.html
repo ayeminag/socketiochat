@@ -15,7 +15,7 @@
 </ul>
 <input type="text" id="message" placeholder="Message"/>&nbsp;&nbsp;<button id="send">Send</button>
 <script type="text/javascript">
-var socket = io.connect("http://localhost:4000");
+var socket = io.connect("http://localhost:3000");
 socket.on("connected", function(data){
   MessagesList.append(data);
 });
